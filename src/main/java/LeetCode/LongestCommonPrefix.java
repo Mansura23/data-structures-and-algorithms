@@ -1,20 +1,21 @@
 package LeetCode;
 
 public class LongestCommonPrefix {
-    public boolean isPalindrome(int x) {
-        if(x<0) return false;
-        int rev = 0;
-        int copy=x;
-        while(copy>0) {
-            rev = rev * 10 + copy % 10;
-            copy/= 10;
+    public String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return "";
         }
-        if(rev == x) return true;
-        return false;
-    }
-    public static void main(String[] args) {
-        LongestCommonPrefix solution = new LongestCommonPrefix();
-        System.out.println(solution.isPalindrome(121));
-
+        String prefix = strs[0];
+        int len = prefix.length();
+        for (int i = 1; i < strs.length; i++) {
+            while (strs[i].indexOf(prefix) != 0) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+                len = prefix.length();
+            }
+        }
+        if (prefix.isEmpty()){
+            return "";
+        }
+        return prefix;
     }
 }
